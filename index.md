@@ -1,5 +1,5 @@
-Here you can say lots of fun things about your site.
+Hello, I am Param Thakkar, a Computer Science Undergraduate at Veermata Jijabai Technological Institute, Mumbai.
 
-Maybe say a some things about yourself.
+I am deeply passionate about Machine Learning, Deep Learning, Large Language Models, and Quantum Computing.
 
-Or maybe what you plan to blog about.
+Welcome to My blog, where I will keep posting about my learning in these topics and other interrelated domains.
