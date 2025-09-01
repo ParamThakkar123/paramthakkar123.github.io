@@ -9,10 +9,8 @@ We can categorize the Language Model interpretability approaches along two dimen
 
 ## Components of a Transformer Language Model
 
-- Auto-regressive language models assign probabilities to sequences of tokens. Using the probability chain rule, we can decompose the probability distribution over a sequence \[ \mathbf{t} = \langle t_{1}, t_{2}, \ldots, t_{n} \rangle\] into a product of conditional distributions:
+- Auto-regressive language models assign probabilities to sequences of tokens. Using the probability chain rule, we can decompose the probability distribution over a sequence $\mathbf{t} = \langle t_{1}, t_{2}, \ldots, t_{n} \rangle$ into a product of conditional distributions:
 
-\[
-P(t_{1}, \ldots, t_{n}) = P(t_{1}) \prod_{i=1}^{n-1} P(t_{i+1} \mid t_{1}, \ldots, t_{i})
-\]
+$P(t_{1}, \ldots, t_{n}) = P(t_{1}) \prod_{i=1}^{n-1} P(t_{i+1} \mid t_{1}, \ldots, t_{i})$
 
 Such distributions can be parametrize using a neural network optimized to maximize the likelihood of a corpus used for training
