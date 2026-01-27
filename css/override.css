@@ -49,8 +49,9 @@ hr {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  align-items: start;
+  align-items: stretch; /* changed: stretch so both panes match height */
   margin: 1.5rem 0;
+  align-content: start;
 }
 .interactive .math-pane,
 .interactive .code-pane {
@@ -59,15 +60,27 @@ hr {
   padding: 1rem;
   box-sizing: border-box;
   border-radius: 6px;
-  overflow: auto;
+  overflow: hidden; /* inner content will scroll instead */
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  max-height: 60vh;
 }
 .interactive .math-pane {
   line-height: 1.5;
 }
+/* let math content fill vertically and scroll if needed */
+.interactive .math-pane > * {
+  flex: 1 1 auto;
+  overflow: auto;
+}
+/* code pane: let <pre> fill the pane and scroll */
 .interactive .code-pane pre {
   margin: 0;
   background: transparent;
   padding: 0;
+  flex: 1 1 auto;
+  overflow: auto;
 }
 @media (max-width: 900px) {
   .interactive { grid-template-columns: 1fr; }
