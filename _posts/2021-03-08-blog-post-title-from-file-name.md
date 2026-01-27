@@ -6,6 +6,24 @@ If the file does not start with a header, then the post title will be derived fr
 
 This is a sample blog post. You can talk about all sorts of fun things here.
 
+<div class="interactive">
+  <div class="math-pane">
+    $$\int_{0}^{1} x^2\,dx = \frac{1}{3}$$
+    <p>Step: $ \int x^2\,dx = \tfrac{x^3}{3} $</p>
+  </div>
+  <div class="code-pane">
+    <pre><code class="language-python"># Example Python
+def square_integral():
+    # approximate integral of x^2 on [0,1] with simple Riemann sum
+    n = 1000
+    dx = 1.0 / n
+    return sum((i*dx)**2 * dx for i in range(n))
+
+print(square_integral())
+</code></pre>
+  </div>
+</div>
+
 ---
 
 ### This is a header

@@ -43,3 +43,32 @@ hr {
   font-size: 2.5em;
   opacity: 0.3;
 }
+
+/* Interactive side-by-side math + code */
+.interactive {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin: 1.5rem 0;
+}
+.interactive .math-pane,
+.interactive .code-pane {
+  background: var(--body-bg, #fff);
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 6px;
+  overflow: auto;
+}
+.interactive .math-pane {
+  line-height: 1.5;
+}
+.interactive .code-pane pre {
+  margin: 0;
+  background: transparent;
+  padding: 0;
+}
+@media (max-width: 900px) {
+  .interactive { grid-template-columns: 1fr; }
+}
