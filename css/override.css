@@ -411,14 +411,13 @@ body.is-leaving .transition-screen {
   border: 1px solid rgba(25, 44, 49, 0.08);
   width: 100%;
   max-width: 280px;
-  height: 429px;
+  height: auto;
 }
 
 .profile-photo {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  display: block;
 }
 
 .profile-heading {
