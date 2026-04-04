@@ -1,4 +1,4 @@
-title: "Param Thakkar Blog"
+title: "Param Thakkar's Blog"
 author: "Param Thakkar"
 description: "Tinkering with Machine learning, Deep learning and Quantum Computing." # This will show up in places like twitter, linkedin, etc, if you share your sites url as a post.
 
@@ -11,6 +11,10 @@ linkedin_username: "paramthakkar2307"
 #facebook_username: username
 #flickr_username: username
 instagram_username: paramthakkar80
+# Social URLs
+github_url: "https://github.com/ParamThakkar123"
+linkedin_url: "https://www.linkedin.com/in/paramthakkar2307/"
+google_scholar_url: "https://scholar.google.com/citations?user=BZpTuDMAAAAJ&hl=en"
 #pinterest_username: username
 #youtube_username: username
 #googleplus_username: +username
@@ -29,6 +33,7 @@ kramdown:
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-scholar
 
 titles_from_headings:
   strip_title: true
@@ -40,3 +45,9 @@ defaults:
       type: post
     values:
       tags: Other
+
+# jekyll-scholar configuration (used by GitHub Actions build)
+scholar:
+  bibliography: _bibliography.bib
+  style: apa
+  details: true

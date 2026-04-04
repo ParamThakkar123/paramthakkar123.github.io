@@ -1,10 +1,9 @@
 ---
 layout: default
 ---
-<link href="/css/override.css" rel="stylesheet" type="text/css">
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header">
+<article class="content-surface document-page post-shell h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="page-head post-header">
+    <p class="eyebrow">Writing</p>
     <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
     <p class="post-meta">
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
@@ -21,7 +20,7 @@ layout: default
     {% include sharelinks.html %}
   </div>
 
-  <div class="post-content e-content" itemprop="articleBody">
+  <div class="prose-flow post-content e-content" itemprop="articleBody">
     {{ content }}
     {% include navlinks.html %}
   </div>

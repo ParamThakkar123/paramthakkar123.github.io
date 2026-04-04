@@ -1,0 +1,50 @@
+- year: 2025
+  title: "Paper accepted at JuliaCon 2025"
+  org: "JuliaCon"
+  description: "Paper accepted for work on RAG workflows and FunSQL.jl integration (JuliaHealth project)."
+  link: ""
+- year: 2025
+  title: "Paper accepted at AAAI 2025 QIML Symposium"
+  org: "AAAI QIML"
+  description: "Paper on benchmarking reinforcement learning algorithms for quantum architecture search."
+  link: ""
+- year: 2024
+  title: "Optimized precompilation times for OrdinaryDiffEq.jl"
+  org: "SciML"
+  description: "Improved precompilation times by ~76% through modularization and refactoring of solver modules."
+  link: ""
+- year: 2025
+  title: "Finalist — Deloitte Hacksplosion Hackathon"
+  org: "Deloitte"
+  description: "Selected as one of the Top 15 finalist teams (from 2800+ teams nationwide) to compete at Deloitte Hacksplosion; finalist pitch at Deloitte's Ecospace office, Bangalore. Associated with VJTI."
+  link: ""
+- year: 2024
+  title: "3rd Place — Secure Local RAG Challenge"
+  org: "Trustii.io"
+  description: "Placed 3rd globally in the Secure Local RAG Challenge (Trustii.io). Associated with VJTI."
+  link: "https://github.com/Trustii-team/Secure-RAG-Challenge"
+- year: 2024
+  title: "Selected — Amazon ML Summer School"
+  org: "Amazon"
+  description: "Selected for Amazon ML Summer School 2024 (competitive selection from 3000+ participants)."
+  link: ""
+- year: 2024
+  title: "3rd Place — Deloitte Quantum Climate Challenge"
+  org: "Deloitte"
+  description: "Finalist and 3rd place at the Deloitte Quantum Climate Challenge 2024; invited to the final pitch event in Düsseldorf, Germany."
+  link: ""
+- year: 2024
+  title: "Code-A-Mania DSA Contest — 28th Rank"
+  org: "Rajiv Gandhi Institute of Technology"
+  description: "Secured 28th rank in the Code-A-Mania DSA contest."
+  link: ""
+- year: 2024
+  title: "Honourable Mention — CTF (Digital VJTI)"
+  org: "Digital VJTI"
+  description: "Received an Honourable Mention in the Capture The Flag (CTF) event organized by Digital VJTI."
+  link: ""
+- year: 2024
+  title: "Advanced Badge — IBM Quantum Challenge 2024"
+  org: "IBM"
+  description: "Awarded the Advanced Badge for completing all challenges in the IBM Quantum Challenge 2024."
+  link: ""

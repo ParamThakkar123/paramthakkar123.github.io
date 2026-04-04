@@ -1,0 +1,24 @@
+---
+layout: default
+---
+{% if page.home %}
+  {{ content }}
+{% else %}
+  <article class="content-surface document-page">
+    <header class="page-head">
+      {% if page.kicker %}
+        <p class="eyebrow">{{ page.kicker }}</p>
+      {% endif %}
+      {% if page.title %}
+        <h1>{{ page.title }}</h1>
+      {% endif %}
+      {% if page.description %}
+        <p class="page-intro">{{ page.description }}</p>
+      {% endif %}
+    </header>
+
+    <div class="prose-flow">
+      {{ content }}
+    </div>
+  </article>
+{% endif %}

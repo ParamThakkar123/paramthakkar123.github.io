@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+  <body class="site-body{% if page.home %} home-page{% endif %}{% if page.body_class %} {{ page.body_class }}{% endif %}">
+    {% include site-header.html %}
+    <main class="site-main shell" id="content" data-page-content>
+      {{ content }}
+    </main>
+    <div class="transition-screen" aria-hidden="true"></div>
+  </body>
+</html>
