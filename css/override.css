@@ -375,6 +375,8 @@ body.is-leaving .transition-screen {
 
 .home-page .portrait-frame {
   background: #f3efe7;
+  width: 100%;
+  max-width: 280px;
 }
 
 .home-page .contact-list a,
@@ -404,16 +406,19 @@ body.is-leaving .transition-screen {
 .portrait-frame {
   overflow: hidden;
   border-radius: var(--radius-lg);
-  aspect-ratio: 4 / 5;
   background:
     linear-gradient(180deg, rgba(224, 235, 236, 0.96), rgba(244, 247, 246, 0.94));
   border: 1px solid rgba(25, 44, 49, 0.08);
+  width: 100%;
+  max-width: 280px;
+  height: 429px;
 }
 
 .profile-photo {
-  inline-size: 100%;
-  block-size: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: top center;
 }
 
 .profile-heading {

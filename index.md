@@ -8,7 +8,7 @@ description: Computer Science undergraduate at VJTI working on reinforcement lea
 <div class="home-grid">
   <aside class="content-surface profile-rail">
     <div class="portrait-frame">
-      <img src="{{ '/assets/profile.svg' | relative_url }}" alt="Portrait of Param Thakkar" class="profile-photo">
+      <img src="{{ '/assets/new_photo.jpg' | relative_url }}" alt="Portrait of Param Thakkar" class="profile-photo">
     </div>
 
     <div class="profile-heading">
@@ -27,6 +27,9 @@ description: Computer Science undergraduate at VJTI working on reinforcement lea
       {% endif %}
       {% if site.github_url %}
         <li><a href="{{ site.github_url }}" target="_blank" rel="noopener"><span>GitHub</span><strong>{{ site.github_username | default: site.author }}</strong></a></li>
+      {% endif %}
+      {% if site.twitter_url %}
+        <li><a href="{{ site.twitter_url }}" target="_blank" rel="noopener"><span>X</span><strong>@Param23072004</strong></a></li>
       {% endif %}
       {% if site.google_scholar_url %}
         <li><a href="{{ site.google_scholar_url }}" target="_blank" rel="noopener"><span>Google Scholar</span><strong>Profile</strong></a></li>
