@@ -41,4 +41,10 @@ description: Selected experiments and project pages spanning machine learning, L
     <h3>Quantum Machine Learning for Flood Prediction</h3>
     <p>Hybrid classical and quantum models to predict floods, part of Deloitte Quantum Climate Challenge.</p>
   </a>
+
+  <a class="mini-card" href="{{ '/projects/torchwm.html' | relative_url }}">
+    <span class="meta-line">World Models</span>
+    <h3>TorchWM</h3>
+    <p>A modular PyTorch library for world models and latent dynamics learning, including Dreamer, PlaNet, and JEPA implementations.</p>
+  </a>
 </div>
