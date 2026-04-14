@@ -43,9 +43,10 @@ titles_from_headings:
 defaults:
   - scope:
       path: ""
-      type: post
+      type: posts
     values:
       tags: Other
+      layout: post
 
 # jekyll-scholar configuration (used by GitHub Actions build)
 scholar:

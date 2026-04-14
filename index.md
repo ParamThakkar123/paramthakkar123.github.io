@@ -70,6 +70,10 @@ description: Computer Science undergraduate at VJTI working on reinforcement lea
           <div class="interest-label">World Models</div>
           <p>Exploring internal representations of environments and dynamics so systems can plan, predict, and reason more effectively.</p>
         </div>
+        <div class="interest-item">
+          <div class="interest-label">Mechanistic Interpretability and AI Safety</div>
+          <p>Understanding how neural networks work internally and ensuring AI systems are aligned with human values and safe.</p>
+        </div>
       </div>
     </section>
 

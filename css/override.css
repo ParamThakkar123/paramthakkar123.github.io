@@ -335,6 +335,40 @@ body.is-leaving .transition-screen {
   font-size: 1.08rem;
 }
 
+.post-content .page-intro {
+  background: linear-gradient(90deg, rgba(31,138,150,0.06), rgba(31,138,150,0));
+  padding: 1rem 1.15rem;
+  border-radius: 14px;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+  color: #2b3a3f;
+}
+
+/* Featured hero */
+.post-hero {
+  margin: 1.25rem 0 1.75rem;
+  border-radius: 16px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: var(--shadow-soft);
+}
+.post-hero-inner {
+  padding: 2.25rem 1.25rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.55));
+}
+.post-hero-title {
+  margin: 0 0 0.4rem;
+  color: #102426;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+.post-hero-lead {
+  margin: 0;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
 .eyebrow,
 .meta-line {
   display: inline-block;
@@ -644,6 +678,53 @@ body.is-leaving .transition-screen {
 
 .post-content > :last-child {
   margin-bottom: 0;
+}
+
+/* Improve post appearance: larger lead paragraph, styled citation, and neat references */
+.post-content p:first-of-type {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #1a2a2d;
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.post-content .citation {
+  color: var(--accent-strong);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(31,138,150,0.45);
+  padding-bottom: 1px;
+  margin-left: 0.18rem;
+}
+
+.post-content .citation:hover {
+  color: var(--accent);
+}
+
+/* Make reference block subtle and focused */
+.post-content h2#references {
+  margin-top: 2.25rem;
+  margin-bottom: 0.6rem;
+}
+
+.post-content ol.bibliography {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-content ol.bibliography > li {
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(241, 245, 244, 0.7);
+  margin-bottom: 0.6rem;
+  border: 1px solid var(--border);
+}
+
+.post-content ol.bibliography > li span {
+  color: var(--text-muted);
 }
 
 .post_navi {

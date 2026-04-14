@@ -20,7 +20,14 @@ layout: default
     {% include sharelinks.html %}
   </div>
 
+  {%- comment -%} featured hero removed per request {%- endcomment -%}
+
   <div class="prose-flow post-content e-content" itemprop="articleBody">
+    {%- if page.lead -%}
+      <p class="page-intro">{{ page.lead }}</p>
+    {%- elsif page.excerpt -%}
+      <p class="page-intro">{{ page.excerpt | strip_html }}</p>
+    {%- endif -%}
     {{ content }}
     {% include navlinks.html %}
   </div>
