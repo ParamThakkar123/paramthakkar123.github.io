@@ -21,12 +21,15 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'
+          # public_suffix in the lockfile requires Ruby >= 3.2 — upgrade runner Ruby
+          ruby-version: '3.2'
           bundler: '4.0.9'
 
       - name: Install dependencies
         run: |
-          gem install bundler jekyll jekyll-scholar
+          # setup-ruby already installs the requested Bundler version; avoid
+          # installing a different Bundler that could cause a restart/mismatch
+          gem install jekyll jekyll-scholar
           bundle install
 
       - name: Build site

@@ -14,7 +14,8 @@ jobs:
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.1'
+        # upgrade to Ruby 3.2 because some gems (public_suffix 7.x) require it
+        ruby-version: '3.2'
         bundler: '4.0.9'
         bundler-cache: true
     - name: Build with Jekyll

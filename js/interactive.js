@@ -5,6 +5,46 @@ document.addEventListener('DOMContentLoaded', function () {
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var supportsViewTransitions = 'startViewTransition' in document;
   var isNavigating = false;
+  var themeToggle = document.getElementById('theme-toggle');
+
+  // Theme management: respect stored preference, system, and allow toggle
+  function getInitialTheme() {
+    try {
+      var stored = localStorage.getItem('theme');
+      if (stored === 'dark' || stored === 'light') return stored;
+    } catch (e) {}
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+    return 'light';
+  }
+
+  function applyTheme(theme, withTransition) {
+    if (withTransition) document.documentElement.classList.add('theme-transition');
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      if (themeToggle) themeToggle.setAttribute('aria-pressed', 'true');
+      if (themeToggle) themeToggle.textContent = '☀️';
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      if (themeToggle) themeToggle.setAttribute('aria-pressed', 'false');
+      if (themeToggle) themeToggle.textContent = '🌙';
+    }
+
+    window.setTimeout(function () {
+      document.documentElement.classList.remove('theme-transition');
+    }, 400);
+  }
+
+  var currentTheme = getInitialTheme();
+  applyTheme(currentTheme, false);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      applyTheme(next, true);
+    });
+  }
 
   function syncNav() {
     if (!navTrigger || !navToggle) {
@@ -183,5 +223,82 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   } catch (error) {
     /* ignore smooth scroll errors */
+  }
+
+  // Blog section tab switching
+  try {
+    var blogNavLinks = document.querySelectorAll('.blog-nav-link');
+    var blogSections = document.querySelectorAll('.archive-section');
+
+    blogNavLinks.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        var targetId = this.getAttribute('href').slice(1);
+
+        // Remove active class from all links and sections
+        blogNavLinks.forEach(function (l) { l.classList.remove('active'); });
+        blogSections.forEach(function (s) { s.classList.remove('active'); });
+
+        // Add active class to clicked link and corresponding section
+        this.classList.add('active');
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+  } catch (error) {
+    /* ignore blog nav errors */
+  }
+
+  // Learnings section tab switching and content distribution
+  try {
+    var learningsNavLinks = document.querySelectorAll('.learnings-nav-link');
+    var learningsSections = document.querySelectorAll('.learnings-section');
+
+    // Distribute learning items to appropriate sections
+    function distributeLearnings() {
+      var allSection = document.getElementById('all-learnings');
+      var technicalSection = document.getElementById('technical');
+      var philosophicalSection = document.getElementById('philosophical');
+
+      if (!allSection || !technicalSection || !philosophicalSection) return;
+
+      // Clear existing items in sections (except the intro paragraphs)
+      [technicalSection, philosophicalSection].forEach(function(section) {
+        var items = section.querySelectorAll('.learning-item');
+        items.forEach(function(item) { item.remove(); });
+      });
+
+      // Get all learning items (they should be in all-learnings section)
+      var allItems = allSection.querySelectorAll('.learning-item');
+
+      allItems.forEach(function(item) {
+        if (item.classList.contains('technical')) {
+          var clone = item.cloneNode(true);
+          technicalSection.appendChild(clone);
+        } else if (item.classList.contains('philosophical')) {
+          var clone = item.cloneNode(true);
+          philosophicalSection.appendChild(clone);
+        }
+      });
+    }
+
+    // Initial distribution
+    distributeLearnings();
+
+    learningsNavLinks.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        var targetId = this.getAttribute('href').slice(1);
+
+        // Remove active class from all links and sections
+        learningsNavLinks.forEach(function (l) { l.classList.remove('active'); });
+        learningsSections.forEach(function (s) { s.classList.remove('active'); });
+
+        // Add active class to clicked link and corresponding section
+        this.classList.add('active');
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+  } catch (error) {
+    /* ignore learnings nav errors */
   }
 });
