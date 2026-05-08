@@ -78,23 +78,6 @@ description: Computer Science undergraduate at VJTI working on reinforcement lea
     </section>
 
     <section class="content-surface section-card">
-      <p class="eyebrow">Work</p>
-      <h2>Selected projects</h2>
-      <div class="project-grid">
-        <a class="mini-card" href="{{ '/projects/llm-experiments.html' | relative_url }}">
-          <span class="meta-line">Generative Modeling</span>
-          <h3>LLM Experiments</h3>
-          <p>Prompting, retrieval, and evaluation experiments that compare practical strategies for working with modern models.</p>
-        </a>
-        <a class="mini-card" href="{{ '/projects/quantum-ml.html' | relative_url }}">
-          <span class="meta-line">World Models</span>
-          <h3>Quantum ML</h3>
-          <p>Hybrid modeling experiments that connect small-scale quantum circuits with broader ideas around representation and prediction.</p>
-        </a>
-      </div>
-    </section>
-
-    <section class="content-surface section-card">
       <p class="eyebrow">Achievements</p>
       <h2>Selected achievements</h2>
       <ul class="pub-list">

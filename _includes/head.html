@@ -1,7 +1,7 @@
 <!-- Site build date: {{ "now" | date: "%FT%T%z" }} -->
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="view-transition" content="same-origin">
 
@@ -11,7 +11,13 @@
   <meta name="author" content="{{ site.author }}">
   <meta property="og:title" content="{{ page.title | default: site.title }}">
   <meta property="og:description" content="{{ page.description | default: site.description }}">
+  <meta property="og:image" content="{{ '/assets/new_photo.jpg' | absolute_url }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title | default: site.title }}">
+  <meta name="twitter:description" content="{{ page.description | default: site.description }}">
+  <meta name="twitter:image" content="{{ '/assets/new_photo.jpg' | absolute_url }}">
   <meta name="google-site-verification" content="npR09xzWsIUXncQHIs0iRjbuKdXFpazsZ-EHSanmY0Y">
   <!-- End basic SEO -->
 

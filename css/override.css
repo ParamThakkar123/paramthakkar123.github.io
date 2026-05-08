@@ -53,6 +53,18 @@ html[data-theme="dark"] {
   --shadow-soft: 0 16px 40px rgba(0,0,0,0.45);
 }
 
+html[data-theme="dark"] .mini-card,
+html[data-theme="dark"] .list-card {
+  background: linear-gradient(180deg, rgba(20, 30, 38, 0.95), rgba(12, 18, 22, 0.98));
+  border-color: rgba(255,255,255,0.08);
+  color: var(--text);
+}
+
+html[data-theme="dark"] .mini-card:hover,
+html[data-theme="dark"] .list-card:hover {
+  border-color: rgba(90, 215, 224, 0.25);
+}
+
 /* Small helper to avoid flash when switching themes */
 .theme-transition * {
   transition: background var(--transition) !important, color var(--transition) !important, border-color var(--transition) !important, box-shadow var(--transition) !important;
@@ -716,6 +728,53 @@ body.is-leaving .transition-screen {
 .pub-list li:first-child {
   padding-top: 0;
   border-top: 0;
+}
+
+.pub-list.work-timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.pub-list.work-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.45rem;
+  top: 1rem;
+  bottom: 1rem;
+  width: 2px;
+  background: var(--accent);
+  opacity: 0.4;
+  border-radius: 2px;
+}
+
+.pub-list.work-timeline li {
+  position: relative;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.pub-list.work-timeline li::before {
+  content: '';
+  position: absolute;
+  left: -1.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+html[data-theme="dark"] .pub-list.work-timeline::before {
+  background: var(--accent-strong);
+  opacity: 0.5;
+}
+
+html[data-theme="dark"] .pub-list.work-timeline li::before {
+  background: #071018;
 }
 
 .pub-authors {
