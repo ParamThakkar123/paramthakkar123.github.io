@@ -18,11 +18,6 @@ description: A collection of technical tricks, philosophical insights, and daily
 
     <!-- Add your learnings here with appropriate classes: class="learning-item technical" or class="learning-item philosophical" -->
     <div class="learning-item philosophical">
-      <h3>The Environment</h3>
-      <p>After living in a hostel for four years, I've realized that while infrastructure matters when choosing a place initially, the people and environment ultimately matter just as much in the long run.</p>
-      <p class="learning-date">Date: 24th April 2026</p>
-    </div>
-    <div class="learning-item philosophical">
       <h3>Importance</h3>
       <p>If something is important to someone they will do it anyways no matter where they are, what they are doing, or in what state they are currently. Busy doesn't mean they are overloaded, it means they don't prioritize the task you are telling them to do. This applies to anyone, even yourself.</p>
       <p class="learning-date">Date: 25th April 2026</p>
