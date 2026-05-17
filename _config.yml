@@ -40,6 +40,10 @@ titles_from_headings:
   strip_title: true
   collections: true
 
+collections:
+  notes:
+    output: true
+
 defaults:
   - scope:
       path: ""
@@ -47,6 +51,11 @@ defaults:
     values:
       tags: Other
       layout: post
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: note
 
 # jekyll-scholar configuration (used by GitHub Actions build)
 scholar:
