@@ -301,4 +301,43 @@ document.addEventListener('DOMContentLoaded', function () {
   } catch (error) {
     /* ignore learnings nav errors */
   }
+
+  // Notes page: course/chapter toggles (clean UI, animated)
+  try {
+    var coursesList = document.querySelector('.courses-list');
+    if (coursesList) {
+      // enhance buttons with keyboard and aria support
+      function setupToggle(button, target) {
+        button.setAttribute('role', 'button');
+        button.setAttribute('tabindex', '0');
+        button.addEventListener('click', function () {
+          var expanded = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', (!expanded).toString());
+          target.classList.toggle('open');
+        });
+        button.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            button.click();
+          }
+        });
+      }
+
+      document.querySelectorAll('.course-item').forEach(function (courseEl) {
+        var btn = courseEl.querySelector('.course-toggle');
+        var chapters = courseEl.querySelector('.chapters-list');
+        if (!btn || !chapters) return;
+        setupToggle(btn, chapters);
+
+        courseEl.querySelectorAll('.chapter-item').forEach(function (chapEl) {
+          var cbtn = chapEl.querySelector('.chapter-toggle');
+          var notes = chapEl.querySelector('.notes-list');
+          if (!cbtn || !notes) return;
+          setupToggle(cbtn, notes);
+        });
+      });
+    }
+  } catch (error) {
+    /* ignore notes toggles errors */
+  }
 });
