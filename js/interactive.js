@@ -340,4 +340,69 @@ document.addEventListener('DOMContentLoaded', function () {
   } catch (error) {
     /* ignore notes toggles errors */
   }
+  // Final math render pass + image fallbacks once all resources have loaded
+  window.addEventListener('load', function () {
+    // Best-effort client-side math rendering (covers any remaining raw $/\(...\) math)
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      } catch (e) {
+        console.warn('KaTeX auto-render final pass failed:', e);
+      }
+    }
+
+    // Image fallback: some markdowns reference images as bare filenames (e.g. image.png).
+    // Browsers will resolve those relative to the page's path which may not match the
+    // location where the static generator placed them. Try a few sensible prefixes if
+    // the image fails to load.
+    document.querySelectorAll('img').forEach(function (img) {
+      var src = img.getAttribute('src') || '';
+      if (!src || /^(https?:|\/)/i.test(src)) return; // absolute or external already
+
+      var tried = 0;
+      var prefixes = [
+        // same directory as the page
+        window.location.pathname.replace(/[^\/]*$/, ''),
+        // common output locations
+        '/posts/', '/notes/', '/assets/', '/images/', '/'
+      ];
+
+      function tryNext() {
+        if (tried >= prefixes.length) return;
+        var prefix = prefixes[tried++];
+        // normalize
+        if (!prefix.endsWith('/')) prefix += '/';
+        var candidate = prefix + src.replace(/^\//, '');
+        // set a short timeout to allow onerror to fire if it fails
+        img.src = candidate;
+      }
+
+      // attach error handler to cycle through candidates
+      img.addEventListener('error', function onErr() {
+        // remove and re-add to avoid multiple calls
+        img.removeEventListener('error', onErr);
+        tryNext();
+        // if more candidates remain, reattach handler
+        if (tried < prefixes.length) img.addEventListener('error', onErr);
+      });
+
+      // trigger the first attempt (this will keep original src first)
+      // if original fails the error handler will cycle through candidates
+      // If original src already started loading, resetting to same value has no effect,
+      // so start with first candidate only if original is a bare filename.
+      if (!src.startsWith('./') && !src.startsWith('../')) {
+        // leave original; error handler will catch failures
+      } else {
+        tryNext();
+      }
+    });
+  });
 });

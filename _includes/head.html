@@ -63,14 +63,28 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    // Run KaTeX auto-render after the whole page (and scripts) have loaded.
+    // Use a conservative load event and make the renderer tolerant to errors
+    // so a single malformed expression won't stop all math from rendering.
+    window.addEventListener('load', function () {
       if (window.renderMathInElement) {
-        renderMathInElement(document.body, {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '$', right: '$', display: false }
-          ]
-        });
+        try {
+          renderMathInElement(document.body, {
+            // Common delimiters: display and inline, including \( \) and \[ \]
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '\\(', right: '\\)', display: false },
+              { left: '$', right: '$', display: false }
+            ],
+            // Don't throw on parser errors (prevents one bad formula from breaking others)
+            throwOnError: false,
+            errorColor: '#cc0000'
+          });
+        } catch (e) {
+          // Fail silently - math rendering is best-effort on the client
+          console.warn('KaTeX auto-render failed:', e);
+        }
       }
     });
   </script>
