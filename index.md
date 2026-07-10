@@ -13,29 +13,28 @@ description: Computer Science undergraduate at VJTI working on reinforcement lea
 
     <div class="profile-heading">
       <p class="eyebrow">Profile</p>
-      <h1>Param Thakkar</h1>
-      <p class="profile-role">Computer Science Undergraduate</p>
+      <h1>Param Thakkar <span class="profile-role">Computer Science Undergraduate</span></h1>
       <p class="profile-focus">VJTI, Mumbai · Reinforcement Learning · Generative Modeling · World Models</p>
     </div>
 
     <ul class="contact-list">
       {% if site.email %}
-        <li><a href="mailto:{{ site.email }}"><span>Email</span><strong>{{ site.email }}</strong></a></li>
+        <li><a href="mailto:{{ site.email }}"><span>Email</span><span class="contact-value">{{ site.email }}</span></a></li>
       {% endif %}
       {% if site.linkedin_url %}
-        <li><a href="{{ site.linkedin_url }}" target="_blank" rel="noopener"><span>LinkedIn</span><strong>{{ site.linkedin_username | default: site.author }}</strong></a></li>
+        <li><a href="{{ site.linkedin_url }}" target="_blank" rel="noopener"><span>LinkedIn</span><span class="contact-value">{{ site.linkedin_username | default: site.author }}</span></a></li>
       {% endif %}
       {% if site.github_url %}
-        <li><a href="{{ site.github_url }}" target="_blank" rel="noopener"><span>GitHub</span><strong>{{ site.github_username | default: site.author }}</strong></a></li>
+        <li><a href="{{ site.github_url }}" target="_blank" rel="noopener"><span>GitHub</span><span class="contact-value">{{ site.github_username | default: site.author }}</span></a></li>
       {% endif %}
       {% if site.twitter_url %}
-        <li><a href="{{ site.twitter_url }}" target="_blank" rel="noopener"><span>X</span><strong>@Param23072004</strong></a></li>
+        <li><a href="{{ site.twitter_url }}" target="_blank" rel="noopener"><span>X</span><span class="contact-value">@Param23072004</span></a></li>
       {% endif %}
       {% if site.google_scholar_url %}
-        <li><a href="{{ site.google_scholar_url }}" target="_blank" rel="noopener"><span>Google Scholar</span><strong>Profile</strong></a></li>
+        <li><a href="{{ site.google_scholar_url }}" target="_blank" rel="noopener"><span>Google Scholar</span><span class="contact-value">Profile</span></a></li>
       {% endif %}
-      <li><a href="{{ '/Param_Thakkar_Res.pdf' | relative_url }}"><span>Curriculum Vitae</span><strong>PDF</strong></a></li>
-      <li><a href="{{ '/journey.html' | relative_url }}"><span>Journey</span><strong>Learning notes</strong></a></li>
+      <li><a href="{{ '/Param_Thakkar_Res.pdf' | relative_url }}"><span>Curriculum Vitae</span><span class="contact-value">PDF</span></a></li>
+      <li><a href="{{ '/journey.html' | relative_url }}"><span>Journey</span><span class="contact-value">Learning notes</span></a></li>
     </ul>
 
     <p class="rail-note">This site is a living notebook for ideas, projects, and technical writing that I want to make clearer, sharper, and more useful over time.</p>
@@ -97,10 +96,19 @@ description: Computer Science undergraduate at VJTI working on reinforcement lea
       <p class="eyebrow">Blogs</p>
       <h2>Recent posts</h2>
       <div class="list-grid">
+        {%- for post in site.posts limit: 4 -%}
+        <a class="list-card" href="{{ post.url | relative_url }}">
+          <span class="meta-line">{{ post.date | date: "%b %-d, %Y" }}</span>
+          <h3>{{ post.title }}</h3>
+          {%- if post.excerpt %}<p class="muted">{{ post.excerpt | strip_html | truncate: 140 }}</p>{% endif -%}
+        </a>
+        {%- else -%}
         <div class="list-card">
-          <p class="muted">Writing one soon, stay tuned</p>
+          <p class="muted">Writing one soon, stay tuned.</p>
         </div>
+        {%- endfor -%}
       </div>
+      <p class="rail-note"><a href="{{ '/archive.html' | relative_url }}">Browse all posts →</a></p>
     </section>
 
     <section class="content-surface section-card">

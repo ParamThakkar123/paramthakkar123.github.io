@@ -1,0 +1,75 @@
+{%- comment -%}
+  JSON-LD structured data for rich results in search engines.
+  - Every page: WebSite + Person (author) graph.
+  - Blog posts / notes: BlogPosting / Article with author, dates, and breadcrumbs.
+{%- endcomment -%}
+{%- assign author_id = site.url | append: '/#person' -%}
+{%- capture same_as -%}
+  {%- if site.github_url %}"{{ site.github_url }}",{% endif -%}
+  {%- if site.linkedin_url %}"{{ site.linkedin_url }}",{% endif -%}
+  {%- if site.twitter_url %}"{{ site.twitter_url }}",{% endif -%}
+  {%- if site.google_scholar_url %}"{{ site.google_scholar_url }}"{% endif -%}
+{%- endcapture -%}
+{%- assign same_as = same_as | strip | replace: ',
+', ',' | replace: ',,', ',' -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "{{ author_id }}",
+      "name": "{{ site.author }}",
+      "url": "{{ site.url }}/",
+      "image": "{{ '/assets/new_photo.jpg' | absolute_url }}",
+      "jobTitle": "Computer Science Undergraduate",
+      "description": {{ site.description | jsonify }},
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "Veermata Jijabai Technological Institute (VJTI), Mumbai"
+      },
+      "knowsAbout": ["Reinforcement Learning", "Generative Modeling", "World Models", "Machine Learning", "Deep Learning", "Quantum Computing", "AI Safety", "Mechanistic Interpretability"],
+      "sameAs": [{{ same_as }}]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": {{ site.title | jsonify }},
+      "description": {{ site.description | jsonify }},
+      "inLanguage": "en",
+      "publisher": { "@id": "{{ author_id }}" },
+      "author": { "@id": "{{ author_id }}" }
+    }
+    {%- if page.layout == 'post' or page.layout == 'note' -%}
+    ,{
+      "@type": "{% if page.layout == 'post' %}BlogPosting{% else %}Article{% endif %}",
+      "@id": "{{ page.url | absolute_url }}#article",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ page.url | absolute_url }}" },
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 200 | jsonify }},
+      "image": "{{ page.image | default: '/assets/new_photo.jpg' | absolute_url }}",
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+      "author": { "@id": "{{ author_id }}" },
+      "publisher": { "@id": "{{ author_id }}" },
+      "url": "{{ page.url | absolute_url }}",
+      "inLanguage": "en"
+      {%- if page.tags %},
+      "keywords": {{ page.tags | join: ', ' | jsonify }}
+      {%- endif %}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ page.url | absolute_url }}#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}/" },
+        { "@type": "ListItem", "position": 2, "name": "{% if page.layout == 'post' %}Blogs{% else %}Notes{% endif %}", "item": "{{ '/archive.html' | absolute_url }}" },
+        { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": "{{ page.url | absolute_url }}" }
+      ]
+    }
+    {%- endif -%}
+  ]
+}
+</script>

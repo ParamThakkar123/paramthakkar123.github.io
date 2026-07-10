@@ -1,6 +1,15 @@
-title: "Param Thakkar's Blog"
+title: "Param Thakkar"
+tagline: "Reinforcement Learning · Generative Modeling · World Models"
+seo_tagline: "Reinforcement Learning & World Models" # Shorter tagline used only in the <title> tag to stay under the ~580px SEO limit
 author: "Param Thakkar"
-description: "Tinkering with Machine learning, Deep learning and Quantum Computing." # This will show up in places like twitter, linkedin, etc, if you share your sites url as a post.
+description: "Param Thakkar is a Computer Science undergraduate at VJTI, Mumbai, writing about reinforcement learning, generative modeling, world models, and AI safety." # Used for SEO, and when the site URL is shared on Twitter, LinkedIn, etc.
+
+# Canonical site URL — REQUIRED for correct SEO. Without it the sitemap,
+# Open Graph image, and canonical tags resolve to http://localhost:4000.
+url: "https://paramthakkar123.github.io"
+baseurl: ""
+lang: en
+keywords: "Param Thakkar, reinforcement learning, generative modeling, world models, machine learning, deep learning, quantum computing, AI safety, mechanistic interpretability, VJTI"
 
 # Email / Social media user names used by the minima theme:
 # All of these are optional and can be removed or commented out
@@ -25,7 +34,18 @@ twitter_url: "https://x.com/Param23072004"
 #########################################################################################
 theme: "minima"
 
-rss: rss
+minima:
+  date_format: "%b %-d, %Y"
+
+# jekyll-feed generates /feed.xml
+feed:
+  path: feed.xml
+
+# Jekyll skips dotfiles and _-prefixed files by default; force these into the
+# build output so the agent-discovery catalog and headers file are published.
+include:
+  - .well-known
+  - _headers
 
 kramdown:
   syntax_highlighter_opts:

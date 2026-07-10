@@ -1,0 +1,28 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://paramthakkar123.github.io/",
+      "service-doc": [
+        {
+          "href": "https://paramthakkar123.github.io/",
+          "type": "text/html",
+          "title": "Param Thakkar — homepage and technical writing"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://paramthakkar123.github.io/sitemap.xml",
+          "type": "application/xml",
+          "title": "Sitemap of all pages, posts, and notes"
+        }
+      ],
+      "alternate": [
+        {
+          "href": "https://paramthakkar123.github.io/feed.xml",
+          "type": "application/rss+xml",
+          "title": "RSS feed of recent posts"
+        }
+      ]
+    }
+  ]
+}

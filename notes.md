@@ -30,7 +30,8 @@ description: Short notes, snippets, and technical reference materials.
               <button class="chapter-toggle" aria-expanded="false">{{ chapter_name }} <span class="count">({{ chapter.items | size }})</span></button>
 
               <ul class="notes-list">
-                {% for note in chapter.items | sort: 'date' | reverse %}
+                {%- assign chapter_notes = chapter.items | sort: 'date' | reverse -%}
+                {% for note in chapter_notes %}
                   <li class="note-item">
                     <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
                     <div class="note-meta">{{ note.date | date: "%b %d, %Y" }}{% if note.excerpt %} · {{ note.excerpt | strip_html | truncate: 120 }}{% endif %}</div>

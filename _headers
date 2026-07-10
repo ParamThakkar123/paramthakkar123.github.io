@@ -1,0 +1,10 @@
+# HTTP response headers for header-capable hosts (Netlify / Cloudflare Pages / Vercel).
+# NOTE: GitHub Pages IGNORES this file — it cannot set custom response headers.
+# This is staged so the Link header (RFC 8288) works automatically if the site
+# ever moves to, or is fronted by, a host that honors a _headers file.
+
+/*
+  Link: </.well-known/api-catalog>; rel="api-catalog", </sitemap.xml>; rel="sitemap", </feed.xml>; rel="alternate"; type="application/rss+xml"
+
+/.well-known/api-catalog
+  Content-Type: application/linkset+json

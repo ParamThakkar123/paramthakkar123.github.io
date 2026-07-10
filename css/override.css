@@ -575,10 +575,13 @@ body.is-leaving .transition-screen {
 }
 
 .profile-role {
+  display: block;
+  margin-top: 0.5rem;
   margin-bottom: 0.3rem;
   color: var(--text);
   font-size: 1.02rem;
   font-weight: 700;
+  line-height: 1.3;
 }
 
 .profile-focus {
@@ -612,9 +615,10 @@ body.is-leaving .transition-screen {
   box-shadow: var(--shadow-soft);
 }
 
-.contact-list strong {
+.contact-list .contact-value {
   color: var(--text-muted);
   font-size: 0.88rem;
+  font-weight: 600;
 }
 
 .rail-note {
