@@ -79,9 +79,37 @@
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/profile.svg' | relative_url }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/favicon-180.png' | relative_url }}">
 
+  {%- comment -%}
+    Apply the stored theme before first paint. This has to be an inline, blocking
+    script in <head>: doing it from interactive.js (which is deferred) means the
+    page paints light first and dark-mode visitors get a white flash on every
+    navigation.
+  {%- endcomment -%}
+  <script>
+    (function () {
+      var theme = 'light';
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark' || stored === 'light') {
+          theme = stored;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          theme = 'dark';
+        }
+      } catch (e) {}
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.classList.add('js');
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  {%- comment -%}
+    Fonts load without blocking the first paint: the sheet is fetched as a
+    non-applying resource, then promoted to a stylesheet once it arrives.
+  {%- endcomment -%}
+  {%- assign font_href = "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" -%}
+  <link rel="stylesheet" href="{{ font_href }}" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="{{ font_href }}"></noscript>
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "/css/override.css" | relative_url }}">
 
@@ -101,56 +129,55 @@
   <!-- End Google Analytics -->
   {%- endif %}
 
-  <!-- Begin highlight.js support -->
-  <link rel="stylesheet" href="{{ "/js/highlightjs/styles/github.css" | relative_url }}">
-  <link rel="stylesheet" href="{{ "/js/highlightjs/styles/ssms.css" | relative_url }}">
-
-  <script>
-    document.documentElement.classList.add('js');
-  </script>
-
-  <script src="{{ "/js/highlightjs/highlight.min.js" | relative_url }}"></script>
-  <script src="{{ "/js/highlightjs/languages/plaintext.min.js" | relative_url }}"></script>
-  <script src="{{ "/js/highlightjs/languages/powershell.min.js" | relative_url }}"></script>
-  <script src="{{ "/js/highlightjs/languages/tsql.min.js" | relative_url }}"></script>
   <script src="{{ "/js/interactive.js" | relative_url }}" defer></script>
 
+  {%- comment -%}
+    highlight.js and KaTeX are only pulled in on pages that actually contain code
+    or math. `needs_code` / `needs_math` are set by _plugins/asset_needs.rb from
+    the rendered content, so no front matter is required; a page can still force
+    either on with `code: true` / `math: true` in its front matter.
+  {%- endcomment -%}
+
+  {%- if page.needs_code or page.code -%}
+  <!-- Begin highlight.js support -->
+  <link rel="stylesheet" href="{{ "/css/hljs-theme.css" | relative_url }}">
+  <script src="{{ "/js/highlightjs/highlight.bundle.min.js" | relative_url }}" defer></script>
   <script>
-    if (window.hljs) {
-      hljs.highlightAll();
-    }
+    // highlight.js 11 defers highlightAll() itself when the document is still
+    // parsing, so calling it here is safe — but the bundle is deferred, so wait.
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.hljs) hljs.highlightAll();
+    });
   </script>
   <!-- end highlight.js support -->
+  {%- endif -%}
 
+  {%- if page.needs_math or page.math -%}
   <!-- KaTeX support for math equations -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
   <script>
-    // Run KaTeX auto-render after the whole page (and scripts) have loaded.
-    // Use a conservative load event and make the renderer tolerant to errors
-    // so a single malformed expression won't stop all math from rendering.
+    // Render once KaTeX's deferred scripts have executed. Tolerant to parse
+    // errors so a single malformed expression can't stop the rest of the page.
     window.addEventListener('load', function () {
-      if (window.renderMathInElement) {
-        try {
-          renderMathInElement(document.body, {
-            // Common delimiters: display and inline, including \( \) and \[ \]
-            delimiters: [
-              { left: '$$', right: '$$', display: true },
-              { left: '\\[', right: '\\]', display: true },
-              { left: '\\(', right: '\\)', display: false },
-              { left: '$', right: '$', display: false }
-            ],
-            // Don't throw on parser errors (prevents one bad formula from breaking others)
-            throwOnError: false,
-            errorColor: '#cc0000'
-          });
-        } catch (e) {
-          // Fail silently - math rendering is best-effort on the client
-          console.warn('KaTeX auto-render failed:', e);
-        }
+      if (!window.renderMathInElement) return;
+      try {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false,
+          errorColor: '#cc0000'
+        });
+      } catch (e) {
+        console.warn('KaTeX auto-render failed:', e);
       }
     });
   </script>
+  {%- endif -%}
   <!-- end KaTeX support -->
 </head>

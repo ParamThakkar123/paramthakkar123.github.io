@@ -33,12 +33,12 @@
         </span>
         <span class="sr-only">Toggle dark mode</span>
       </button>
-      <input type="checkbox" id="nav-trigger" class="nav-trigger">
-      <label for="nav-trigger" class="nav-toggle">
-        <span></span><span></span><span></span>
-      </label>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-list">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
 
-      <ul class="nav-list">
+      <ul class="nav-list" id="nav-list">
         <li><a class="nav-link{% if current_url == '/publications.html' %} active{% endif %}" href="{{ '/publications.html' | relative_url }}">Publications</a></li>
         <li><a class="nav-link{% if current_url == '/projects.html' or current_url contains '/projects/' %} active{% endif %}" href="{{ '/projects.html' | relative_url }}">Projects</a></li>
         <li><a class="nav-link{% if current_url == '/work-experience.html' %} active{% endif %}" href="{{ '/work-experience.html' | relative_url }}">Work</a></li>
@@ -47,6 +47,7 @@
         <li><a class="nav-link{% if current_url == '/archive.html' or page.layout == 'post' %} active{% endif %}" href="{{ '/archive.html' | relative_url }}">Blogs</a></li>
         <li><a class="nav-link{% if current_url == '/learnings.html' %} active{% endif %}" href="{{ '/learnings.html' | relative_url }}">Learnings</a></li>
         <li><a class="nav-link{% if current_url == '/notes.html' or page.layout == 'note' %} active{% endif %}" href="{{ '/notes.html' | relative_url }}">Notes</a></li>
+        <li><a class="nav-link{% if current_url == '/search.html' %} active{% endif %}" href="{{ '/search.html' | relative_url }}">Search</a></li>
         <li><a class="nav-link cv-link" href="{{ '/Param_Thakkar_Res.pdf' | relative_url }}">CV</a></li>
       </ul>
     </nav>

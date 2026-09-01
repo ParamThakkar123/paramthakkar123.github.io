@@ -2,8 +2,9 @@
 <html lang="en">
   {% include head.html %}
   <body class="site-body{% if page.home %} home-page{% endif %}{% if page.body_class %} {{ page.body_class }}{% endif %}">
+    <a class="skip-link" href="#content">Skip to content</a>
     {% include site-header.html %}
-    <main class="site-main shell" id="content" data-page-content>
+    <main class="site-main shell" id="content" tabindex="-1" data-page-content>
       {{ content }}
     </main>
     <div class="transition-screen" aria-hidden="true"></div>

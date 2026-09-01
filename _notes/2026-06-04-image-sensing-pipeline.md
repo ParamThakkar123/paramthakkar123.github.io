@@ -7,7 +7,7 @@ tags: [markdown, guide]
 excerpt: "Lecture 2.4 notes on Introduction to Computer Vision by Andreas Geiger"
 ---
 
-![Image Sensing Pipeline](image-28.png)
+![Image Sensing Pipeline](image-28.webp)
 
 The image sensing pipeline can be divided into three stages:
 - Physical light transport in the camera lens/body.
@@ -16,7 +16,7 @@ The image sensing pipeline can be divided into three stages:
 
 ## Shutter
 
-![Shutter](image-29.png)
+![Shutter](image-29.webp)
 
 - A focal plane shutter is positioned just in front of the image sensor/film
 - Most digital cameras use a combination of mechanical and electronic shutter.
@@ -33,17 +33,17 @@ The image sensing pipeline can be divided into three stages:
 - To measure color, pixels are arranged in a color array
 - Missing colors at each pixel are interpolated from neighbors (demosaicing).
 
-![Color Filter Arrays](image-30.png)
+![Color Filter Arrays](image-30.webp)
 
 - Each pixel integrates the light spectrum L according to its spectral sensitivity S:
 
-![R](image-31.png)
+![R](image-31.webp)
 
 - The spectral response curves are provided by the camera manufacturer.
 
 ## Gamma Compression
 
-![Gamma Compression](image-32.png)
+![Gamma Compression](image-32.webp)
 
 - Humans are more sensitive to intensity differences in darker regions.
 - Therefore, it is beneficial to nonlinearly transform (left) the intensities or colors prior to discretization (left) and to undo this transformation during loading.

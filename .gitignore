@@ -1,3 +1,6 @@
-﻿_site
+_site
 node_modules/*
 package-lock.json
+vendor/
+.bundle/
+.jekyll-cache/

@@ -17,7 +17,7 @@ Let $$\textbf{p} \in \mathcal{R}^3$$ denote a 3D surface point, $$\textbf{v} \in
 
 The rendering equation describes how much of the light $$L_{in}$$ with wavelength $$\lambda$$ arriving at p is reflected into the viewing direction v: 
 
-![Rendering Equation](image-23.png)
+![Rendering Equation](image-23.webp)
 
 - $$\omega$$ is the unit hemisphere at normal n
 = The bidirectional reflectance distribution function BRDF(p, r, v, $$\lambda$$) defines how light is reflected at an opaque surface.
@@ -25,7 +25,7 @@ The rendering equation describes how much of the light $$L_{in}$$ with wavelengt
 
 ## Diffuse and Specular Reflection
 
-![Diffuse and Specular](image-24.png)
+![Diffuse and Specular](image-24.webp)
 
 - Typical BRDFs have a diffuse and speculr component
 - The diffuse (=constant) component scatters light uniformly in all directions.
@@ -58,9 +58,9 @@ The rendering equation describes how much of the light $$L_{in}$$ with wavelengt
 
 ## Thin Lens Model
 
-![Thin Lens Model](image-25.png)
+![Thin Lens Model](image-25.webp)
 
-![Lens Equation](image-26.png)
+![Lens Equation](image-26.webp)
 
 - The thin lens model with spherical lens is often used as an approximation
 - Properties: Axis-parallel rays pass the focal point, rays via center keep direction
@@ -102,7 +102,7 @@ The rendering equation describes how much of the light $$L_{in}$$ with wavelengt
 
 ## Vignetting
 
-![Vignetting](image-27.png)
+![Vignetting](image-27.webp)
 
 - The tendency for the brightness to fall off towards the image edge.
 - Composition of two effects: natural and mechanical vignetting

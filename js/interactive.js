@@ -1,33 +1,30 @@
 document.addEventListener('DOMContentLoaded', function () {
-  var navTrigger = document.getElementById('nav-trigger');
-  var navToggle = document.querySelector('.nav-toggle');
+  var navToggle = document.getElementById('nav-toggle');
   var navList = document.querySelector('.nav-list');
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var supportsViewTransitions = 'startViewTransition' in document;
   var isNavigating = false;
   var themeToggle = document.getElementById('theme-toggle');
 
-  // Theme management: respect stored preference, system, and allow toggle
-  function getInitialTheme() {
-    try {
-      var stored = localStorage.getItem('theme');
-      if (stored === 'dark' || stored === 'light') return stored;
-    } catch (e) {}
-
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
-    return 'light';
-  }
-
+  // Theme management. The initial theme is already applied by the inline script
+  // in <head> (which runs before first paint to avoid a flash); this only keeps
+  // the toggle's state in sync and handles clicks.
+  //
+  // NOTE: never write to themeToggle.textContent here — the button's contents
+  // are the sun/moon SVGs from site-header.html plus its screen-reader label,
+  // and the sun/moon crossfade is driven purely by CSS off html[data-theme].
   function applyTheme(theme, withTransition) {
     if (withTransition) document.documentElement.classList.add('theme-transition');
+
     if (theme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
-      if (themeToggle) themeToggle.setAttribute('aria-pressed', 'true');
-      if (themeToggle) themeToggle.textContent = '☀️';
     } else {
-      document.documentElement.removeAttribute('data-theme');
-      if (themeToggle) themeToggle.setAttribute('aria-pressed', 'false');
-      if (themeToggle) themeToggle.textContent = '🌙';
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+      themeToggle.setAttribute('title', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
     }
 
     window.setTimeout(function () {
@@ -35,8 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 400);
   }
 
-  var currentTheme = getInitialTheme();
-  applyTheme(currentTheme, false);
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
 
   if (themeToggle) {
     themeToggle.addEventListener('click', function () {
@@ -46,26 +42,51 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function syncNav() {
-    if (!navTrigger || !navToggle) {
-      return;
-    }
+  // Follow the OS setting for as long as the visitor hasn't picked one.
+  if (window.matchMedia) {
+    var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    var onSchemeChange = function (event) {
+      var stored;
+      try { stored = localStorage.getItem('theme'); } catch (e) {}
+      if (stored === 'dark' || stored === 'light') return;
+      applyTheme(event.matches ? 'dark' : 'light', true);
+    };
 
-    navToggle.setAttribute('aria-expanded', navTrigger.checked ? 'true' : 'false');
+    if (darkQuery.addEventListener) {
+      darkQuery.addEventListener('change', onSchemeChange);
+    } else if (darkQuery.addListener) {
+      darkQuery.addListener(onSchemeChange);
+    }
   }
 
-  if (navTrigger && navToggle) {
-    navTrigger.addEventListener('change', syncNav);
-    syncNav();
+  function navIsOpen() {
+    return !!navToggle && navToggle.getAttribute('aria-expanded') === 'true';
+  }
 
+  function setNavOpen(open) {
+    if (!navToggle) return;
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  if (navToggle) {
+    navToggle.addEventListener('click', function () {
+      setNavOpen(!navIsOpen());
+    });
+
+    // Click outside to dismiss.
     document.addEventListener('click', function (event) {
-      if (!navTrigger.checked || !navList) {
-        return;
-      }
+      if (!navIsOpen() || !navList) return;
 
-      if (!navList.contains(event.target) && event.target !== navToggle && !navToggle.contains(event.target)) {
-        navTrigger.checked = false;
-        syncNav();
+      if (!navList.contains(event.target) && !navToggle.contains(event.target)) {
+        setNavOpen(false);
+      }
+    });
+
+    // Escape closes the menu and returns focus to the button that opened it.
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && navIsOpen()) {
+        setNavOpen(false);
+        navToggle.focus();
       }
     });
   }
@@ -184,10 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    if (navTrigger) {
-      navTrigger.checked = false;
-      syncNav();
-    }
+    setNavOpen(false);
 
     if (supportsViewTransitions) {
       return;
@@ -340,69 +358,8 @@ document.addEventListener('DOMContentLoaded', function () {
   } catch (error) {
     /* ignore notes toggles errors */
   }
-  // Final math render pass + image fallbacks once all resources have loaded
-  window.addEventListener('load', function () {
-    // Best-effort client-side math rendering (covers any remaining raw $/\(...\) math)
-    if (window.renderMathInElement) {
-      try {
-        renderMathInElement(document.body, {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '\\[', right: '\\]', display: true },
-            { left: '\\(', right: '\\)', display: false },
-            { left: '$', right: '$', display: false }
-          ],
-          throwOnError: false
-        });
-      } catch (e) {
-        console.warn('KaTeX auto-render final pass failed:', e);
-      }
-    }
-
-    // Image fallback: some markdowns reference images as bare filenames (e.g. image.png).
-    // Browsers will resolve those relative to the page's path which may not match the
-    // location where the static generator placed them. Try a few sensible prefixes if
-    // the image fails to load.
-    document.querySelectorAll('img').forEach(function (img) {
-      var src = img.getAttribute('src') || '';
-      if (!src || /^(https?:|\/)/i.test(src)) return; // absolute or external already
-
-      var tried = 0;
-      var prefixes = [
-        // same directory as the page
-        window.location.pathname.replace(/[^\/]*$/, ''),
-        // common output locations
-        '/posts/', '/notes/', '/assets/', '/images/', '/'
-      ];
-
-      function tryNext() {
-        if (tried >= prefixes.length) return;
-        var prefix = prefixes[tried++];
-        // normalize
-        if (!prefix.endsWith('/')) prefix += '/';
-        var candidate = prefix + src.replace(/^\//, '');
-        // set a short timeout to allow onerror to fire if it fails
-        img.src = candidate;
-      }
-
-      // attach error handler to cycle through candidates
-      img.addEventListener('error', function onErr() {
-        // remove and re-add to avoid multiple calls
-        img.removeEventListener('error', onErr);
-        tryNext();
-        // if more candidates remain, reattach handler
-        if (tried < prefixes.length) img.addEventListener('error', onErr);
-      });
-
-      // trigger the first attempt (this will keep original src first)
-      // if original fails the error handler will cycle through candidates
-      // If original src already started loading, resetting to same value has no effect,
-      // so start with first candidate only if original is a bare filename.
-      if (!src.startsWith('./') && !src.startsWith('../')) {
-        // leave original; error handler will catch failures
-      } else {
-        tryNext();
-      }
-    });
-  });
+  // The src-guessing image fallback that used to live here was a workaround for
+  // post images sitting in _posts/, which Jekyll never publishes. Those images
+  // now live in assets/blog/ and are referenced properly, so every <img> resolves
+  // on the first try and the retry loop is gone.
 });

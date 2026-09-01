@@ -8,7 +8,7 @@ description: Computer Science undergraduate at VJTI working on reinforcement lea
 <div class="home-grid">
   <aside class="content-surface profile-rail">
     <div class="portrait-frame">
-      <img src="{{ '/assets/new_photo.jpg' | relative_url }}" alt="Portrait of Param Thakkar" class="profile-photo">
+      <img src="{{ '/assets/new_photo.jpg' | relative_url }}" alt="Portrait of Param Thakkar" class="profile-photo" width="285" height="353" loading="eager" decoding="async" fetchpriority="high">
     </div>
 
     <div class="profile-heading">

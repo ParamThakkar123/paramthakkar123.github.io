@@ -13,11 +13,11 @@ excerpt: "Lecture 2.1 notes on Introduction to Computer Vision by Andreas Geiger
 
 2D points can be written in inhomogeneous coordinates as :
 
-![Inhomogeneous coordinates](image.png)
+![Inhomogeneous coordinates](image.webp)
 
 or in homogeneous coordinates as:
 
-![Homogeneous coordinates](image-1.png)
+![Homogeneous coordinates](image-1.webp)
 
 where $$\mathcal{P}^2 = \mathcal{R}^3 \ \{(0, 0, 0)\}$$ is called projective space.
 
@@ -25,15 +25,15 @@ Homogeneous vectors that differ only by scale are considered equivalent and defi
 
 An inhomogeneous vector x is converted to a homogeneous vector x as follows:
 
-![Conversion](image-2.png)
+![Conversion](image-2.webp)
 
 with augmented vector $$\bar{x}$$. To convert in the opposite direction we divide by $$\tilde{w}$$:
 
-![Inhomogeneous Conversion](image-3.png)
+![Inhomogeneous Conversion](image-3.webp)
 
 Homogeneous points whose last element is $$\tilde{w} = 0$$ are called ideal points or points at infinity. These points can't be represented with inhomogeneous coordinates.
 
-![Plane](image-4.png)
+![Plane](image-4.webp)
 
 2D lines can also be expressed using homogeneous coordinates $$\mathcal{I} = (a, b, c)^T$$:
 
@@ -47,7 +47,7 @@ An exception is the line at infinity $$\tilde{I_{\inf}} = (0, 0, 1)^T$$ which pa
 
 Cross product expressed as the product of a skew-symmetric matrix and a vector 
 
-![Cross Product](image-5.png)
+![Cross Product](image-5.webp)
 
 ## 2D Line Arithmetic
 
