@@ -6,9 +6,16 @@ permalink: /work-experience.html
 
 Below is a summary of professional roles and internships.
 
-<ul class="pub-list">
+<ul class="pub-list work-list">
 {%- for w in site.data.work_experience -%}
   <li>
+    <div class="org-logo">
+      {%- if w.logo -%}
+        <img src="{{ w.logo | relative_url }}" alt="{{ w.org }} logo" width="56" height="56" loading="lazy" decoding="async">
+      {%- else -%}
+        <span aria-hidden="true">{{ w.org | slice: 0 }}</span>
+      {%- endif -%}
+    </div>
     <div>
       <strong>{{ w.role }}</strong>
       <div class="muted">{{ w.org }} · {{ w.start }}{% if w.end %} – {{ w.end }}{% endif %}</div>

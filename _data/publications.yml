@@ -1,9 +1,43 @@
+- authors: "Param Thakkar, Parsika Paresh Shah, Manisha Sushant Gote"
+  title: "Modeling What Changes: Sparse, Residual World Models for Object-Centric Manipulation"
+  venue: "arXiv preprint"
+  year: 2026
+  type: "Preprint"
+  note: "cs.RO"
+  thumbnail: "/assets/papers/2609.02046.jpg"
+  pdf: "https://arxiv.org/pdf/2609.02046.pdf"
+  url: "https://arxiv.org/abs/2609.02046"
+  url_label: "arXiv"
+
+- authors: "Bhavith Chandra Challagundla, Sanskar Pandey, Param Thakkar, Rishikesh Mallagundla, Yugandhar Reddy Gogireddy, Wenhao Lu, Hindol Roy Choudhury, Shravani Challagundla, Mohamed Deraz Nasr, Spursh Deshpande"
+  title: "One Lens, Many Worlds: A Capability-Typed Interface for World-Model Interpretability"
+  venue: "arXiv preprint"
+  year: 2026
+  type: "Preprint"
+  note: "cs.LG"
+  thumbnail: "/assets/papers/2606.09936.jpg"
+  pdf: "https://arxiv.org/pdf/2606.09936.pdf"
+  url: "https://arxiv.org/abs/2606.09936"
+  url_label: "arXiv"
+
+- authors: "Param Thakkar, Anushka Yadav, Michael Tiemann, Abhi Mehta, Akshita Bhasin, Shrinivas Khedkar"
+  title: "BhashaSetu: A Data-Centric Approach to Low-Resource Machine Translation"
+  venue: "arXiv preprint"
+  year: 2026
+  type: "Preprint"
+  note: "cs.CL"
+  thumbnail: "/assets/papers/2605.27050.jpg"
+  pdf: "https://arxiv.org/pdf/2605.27050.pdf"
+  url: "https://arxiv.org/abs/2605.27050"
+  url_label: "arXiv"
+
 - authors: "Khushiyant, Param Thakkar"
   title: "HELIX: Scaling Raw Audio Understanding with Hybrid Mamba-Attention Beyond the Quadratic Limit"
   venue: "arXiv preprint"
   year: 2026
   type: "Preprint"
   note: "cs.SD"
+  thumbnail: "/assets/papers/2603.21316.jpg"
   pdf: "https://arxiv.org/pdf/2603.21316.pdf"
   url: "https://arxiv.org/abs/2603.21316"
   url_label: "arXiv"
@@ -13,6 +47,8 @@
   venue: "Proceedings of the AAAI Symposium Series, 7(1), 358-367"
   year: 2025
   type: "Symposium Paper"
+  thumbnail: "/assets/papers/2507.12189.jpg"
+  pdf: "https://arxiv.org/pdf/2507.12189.pdf"
   url: "https://ojs.aaai.org/index.php/AAAI-SS/article/view/36906"
   url_label: "Paper"
   doi: "10.1609/aaaiss.v7i1.36906"
@@ -23,6 +59,7 @@
   year: 2024
   type: "Preprint"
   note: "cs.IR"
+  thumbnail: "/assets/papers/2410.19855.jpg"
   pdf: "https://arxiv.org/pdf/2410.19855.pdf"
   url: "https://arxiv.org/abs/2410.19855"
   url_label: "arXiv"
@@ -33,6 +70,7 @@
   year: 2024
   type: "Preprint"
   note: "cs.LG"
+  thumbnail: "/assets/papers/2407.01001.jpg"
   pdf: "https://arxiv.org/pdf/2407.01001.pdf"
   url: "https://arxiv.org/abs/2407.01001"
   url_label: "arXiv"

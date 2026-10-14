@@ -5,12 +5,19 @@ kicker: Research Output
 description: Papers, technical reports, and references connected to my work and evolving interests.
 ---
 
-{% assign pubs = site.data.publications | sort: 'year' | reverse %}
+{% assign pubs = site.data.publications %}
 
 {% if pubs and pubs.size > 0 %}
-  <ul class="pub-list">
+  <ul class="pub-list pub-list--thumbs">
     {% for p in pubs %}
       <li>
+        {% if p.thumbnail %}
+          <a class="pub-thumb" href="{{ p.url | default: p.pdf }}" aria-hidden="true" tabindex="-1">
+            <img src="{{ p.thumbnail | relative_url }}" alt="" width="640" height="513" loading="lazy" decoding="async">
+          </a>
+        {% else %}
+          <div class="pub-thumb pub-thumb--empty" aria-hidden="true"></div>
+        {% endif %}
         <div>
           <p class="pub-authors">{{ p.authors }}</p>
           <h3>{{ p.title }}</h3>
