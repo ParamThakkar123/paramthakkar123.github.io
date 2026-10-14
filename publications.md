@@ -13,7 +13,8 @@ description: Papers, technical reports, and references connected to my work and 
       <li>
         {% if p.thumbnail %}
           <a class="pub-thumb" href="{{ p.url | default: p.pdf }}" aria-hidden="true" tabindex="-1">
-            <img src="{{ p.thumbnail | relative_url }}" alt="" width="640" height="513" loading="lazy" decoding="async">
+            {%- assign t = p.thumbnail | relative_url -%}
+            <img src="{{ t }}-336.webp" srcset="{{ t }}-336.webp 336w, {{ t }}-672.webp 672w" sizes="(max-width: 960px) 280px, 168px" alt="" width="336" height="269" {% if forloop.index <= 2 %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
           </a>
         {% else %}
           <div class="pub-thumb pub-thumb--empty" aria-hidden="true"></div>

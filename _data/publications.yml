@@ -4,7 +4,7 @@
   year: 2026
   type: "Preprint"
   note: "cs.RO"
-  thumbnail: "/assets/papers/2609.02046.jpg"
+  thumbnail: "/assets/papers/2609.02046"
   pdf: "https://arxiv.org/pdf/2609.02046.pdf"
   url: "https://arxiv.org/abs/2609.02046"
   url_label: "arXiv"
@@ -15,7 +15,7 @@
   year: 2026
   type: "Preprint"
   note: "cs.LG"
-  thumbnail: "/assets/papers/2606.09936.jpg"
+  thumbnail: "/assets/papers/2606.09936"
   pdf: "https://arxiv.org/pdf/2606.09936.pdf"
   url: "https://arxiv.org/abs/2606.09936"
   url_label: "arXiv"
@@ -26,7 +26,7 @@
   year: 2026
   type: "Preprint"
   note: "cs.CL"
-  thumbnail: "/assets/papers/2605.27050.jpg"
+  thumbnail: "/assets/papers/2605.27050"
   pdf: "https://arxiv.org/pdf/2605.27050.pdf"
   url: "https://arxiv.org/abs/2605.27050"
   url_label: "arXiv"
@@ -37,7 +37,7 @@
   year: 2026
   type: "Preprint"
   note: "cs.SD"
-  thumbnail: "/assets/papers/2603.21316.jpg"
+  thumbnail: "/assets/papers/2603.21316"
   pdf: "https://arxiv.org/pdf/2603.21316.pdf"
   url: "https://arxiv.org/abs/2603.21316"
   url_label: "arXiv"
@@ -47,7 +47,7 @@
   venue: "Proceedings of the AAAI Symposium Series, 7(1), 358-367"
   year: 2025
   type: "Symposium Paper"
-  thumbnail: "/assets/papers/2507.12189.jpg"
+  thumbnail: "/assets/papers/2507.12189"
   pdf: "https://arxiv.org/pdf/2507.12189.pdf"
   url: "https://ojs.aaai.org/index.php/AAAI-SS/article/view/36906"
   url_label: "Paper"
@@ -59,7 +59,7 @@
   year: 2024
   type: "Preprint"
   note: "cs.IR"
-  thumbnail: "/assets/papers/2410.19855.jpg"
+  thumbnail: "/assets/papers/2410.19855"
   pdf: "https://arxiv.org/pdf/2410.19855.pdf"
   url: "https://arxiv.org/abs/2410.19855"
   url_label: "arXiv"
@@ -70,7 +70,7 @@
   year: 2024
   type: "Preprint"
   note: "cs.LG"
-  thumbnail: "/assets/papers/2407.01001.jpg"
+  thumbnail: "/assets/papers/2407.01001"
   pdf: "https://arxiv.org/pdf/2407.01001.pdf"
   url: "https://arxiv.org/abs/2407.01001"
   url_label: "arXiv"

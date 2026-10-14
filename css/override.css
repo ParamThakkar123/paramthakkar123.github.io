@@ -944,6 +944,7 @@ a.pub-thumb:hover {
 .org-logo {
   display: grid;
   place-items: center;
+  box-sizing: border-box;
   width: 56px;
   height: 56px;
   overflow: hidden;
@@ -953,10 +954,10 @@ a.pub-thumb:hover {
 }
 
 .org-logo img {
+  display: block;
   width: 100%;
   height: 100%;
-  padding: 6px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .org-logo span {

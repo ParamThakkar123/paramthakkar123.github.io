@@ -11,7 +11,7 @@ Below is a summary of professional roles and internships.
   <li>
     <div class="org-logo">
       {%- if w.logo -%}
-        <img src="{{ w.logo | relative_url }}" alt="{{ w.org }} logo" width="56" height="56" loading="lazy" decoding="async">
+        <img src="{{ w.logo | relative_url }}" alt="{{ w.org }} logo" width="56" height="56" {% if forloop.index <= 3 %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
       {%- else -%}
         <span aria-hidden="true">{{ w.org | slice: 0 }}</span>
       {%- endif -%}
